@@ -25,6 +25,16 @@ services:
       - 27017:27017
     volumes:
       - prj-mongodb-data:/data/db
+  
+  analytics-app:
+    image: akinofu/analytics-app:latest
+    restart: always
+    command: python3 /analytics-app/app.py
+    ports:
+      - 8080:8080
+    depends_on:
+      - mysql
+      - mongodb
 
 volumes:
   prj-mysql-data:
