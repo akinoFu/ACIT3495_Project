@@ -1,0 +1,31 @@
+version: '3.3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      # MYSQL_DATABASE: 'project'
+      # MYSQL_USER: 'app'
+      # MYSQL_PASSWORD: 'group10'
+      MYSQL_ROOT_PASSWORD: 'group10'
+    ports:
+      - "33061:3306"
+    command: --init-file /data/application/mysql_init.sql
+    volumes:
+      - prj-mysql-data:/var/lib/mysql
+      - ./mysql_init.sql:/data/application/mysql_init.sql
+  
+  mongodb:
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: group10
+      MONGO_INITDB_DATABASE: project
+    ports:
+      - 27017:27017
+    volumes:
+      - prj-mongodb-data:/data/db
+
+volumes:
+  prj-mysql-data:
+  prj-mongodb-data:
