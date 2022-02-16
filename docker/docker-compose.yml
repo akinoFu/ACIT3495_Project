@@ -12,7 +12,7 @@ services:
       - "33061:3306"
     command: --init-file /data/application/mysql_init.sql
     volumes:
-      - mysql-data:/var/lib/mysql
+      - prj-mysql-data:/var/lib/mysql
       - ./mysql_init.sql:/data/application/mysql_init.sql
   
   mongodb:
@@ -20,11 +20,12 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: group10
+      MONGO_INITDB_DATABASE: project
     ports:
       - 27017:27017
     volumes:
-      - mongodb_data:/data/db
+      - prj-mongodb-data:/data/db
 
 volumes:
-  mysql-data:
-  mongodb_data:
+  prj-mysql-data:
+  prj-mongodb-data:
