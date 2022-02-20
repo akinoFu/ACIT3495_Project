@@ -35,6 +35,17 @@ services:
     depends_on:
       - mysql
       - mongodb
+      
+  web-app:
+    image: cherylk19/webapp:v1
+    restart: always
+    build: .
+    # command: node server.js
+    ports:
+      - 8001:8001
+    depends_on:
+      - mysql
+      - mongodb
 
 volumes:
   prj-mysql-data:
