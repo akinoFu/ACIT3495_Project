@@ -21,7 +21,7 @@ const githublogin = new GitHubStrategy(
   {
     clientID: "1269d5241039b779c65a",
     clientSecret: "2090f19a24b9f5b66076b927d3002fb02a956b5b",
-    callbackURL: "http://localhost:8001/auth/github/callback"
+    callbackURL: "http://localhost:3001/auth/github/callback"
   },
   (accessToken, refreshToken, profile, cb) => {
     let user = userController.getGitHubIdAndPassword(profile);

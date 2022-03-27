@@ -1,0 +1,20 @@
+<h1 class="mt-4">Admin Board</h1>
+<p class="lead mb-3">Welcome <%= admin %></p>
+<br>
+<p>All users' analytics</p>
+<label class="lead mb-3">
+<% for (var user in users) { %>
+    <p>User: <%= users[user]['name'] %></p>
+    <p>Highest: <%= users[user]['max'] %></p>
+    <p>Lowest: <%= users[user]['min'] %></p>
+    <p>Average: <%= users[user]['avg'] %></p>
+     
+    <form class="btn" action="/del_session" method="POST"  >
+        <button type="submit" class="btn btn-block">Delete Record</button>
+        <input hidden="true" type="text" name="userid" value="<%= users[user]['_id'] %>">
+    </form>
+    <br>
+<% } %>
+</label>
+
+<a href="/auth/logout" class="btn btn-secondary">Logout</a>

@@ -2,15 +2,16 @@ version: 1
 mysql:
   user: root
   password: group10
-  hostname: localhost
+  hostname: host.docker.internal
   port: 33061
   db: project
 mongodb:
   user: root
   password: group10
-  hostname: localhost
+  hostname: host.docker.internal
   port: 27017
   db: project
   collection: analytics
 scheduler:
   period_sec: 5
+host: host.docker.internal
