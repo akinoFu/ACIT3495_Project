@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: ReplicaSet 
+metadata:
+  name: project2-replicaset
+  labels:
+    app: project2
+spec: 
+  replicas: 5
+  selector:
+    matchLabels: 
+      app: front-end
+  template:
+    metadata:
+      labels:
+        app: front-end
+    spec:
+      containers:
+      - name: front
+        image: cherylk19/front:latest
+        ports: 
+        - containerPort: 3001
