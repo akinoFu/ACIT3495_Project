@@ -1,14 +1,9 @@
-<html>
-  <head>
-    <title>Enter Grade</title>
-  </head>
-  <body>
-    <h3>Welcome <%= user %></h3>
-    <form action="/app1" method="POST">  
-      Subject: <input type="text" name="subject">  <br>  
-      Grade: <input type="text" name="grade">  
-      <input type="submit" value="Submit">  
-      </form>  
-  </body>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-</html>
+<h1 class="mt-4">Dashboard</h1>
+<p class="lead mb-3">Welcome <%= user %></p>
+<form action="/app1" method="POST">  
+  Subject: <input type="text" name="subject" class="lead mb-3">  <br>  
+  Grade: <input type="text" name="grade" class="lead mb-3">  
+  <input type="submit" value="Submit" class="btn btn-secondary">  
+  </form>
+<a href="http://localhost:3002" class="btn btn-secondary">View grade</a><br>
+<a href="http://localhost:3000/auth/logout" class="btn btn-secondary">Log out</a>

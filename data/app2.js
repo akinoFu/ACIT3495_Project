@@ -51,7 +51,6 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     const db = client.db('project')
 
     app.post('/add',(req, res) => {
-      // res.send("Hello world From Server 2");
       req.session.subject = req.body.subject,
       req.session.grade = req.body.grade
       subject = req.body.subject,
@@ -63,42 +62,41 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
         }res.status(200).send('OK');
       });
     });
+    app.get('/',function(req,res) {
+      res.redirect('/app2')
+    });
     app.get('/app2',function(req,res) {
-        // res.send("Hello world From Server 2");
         const sess = req.session;
         req.session.subject = subject,
         req.session.grade = grade
         req.session.user = user
         
         if (typeof user !== 'undefined' && user !=''){
-        //   res.render("dashboard", {
-        //   user: user,
-        //   subject: subject,
-        //   grade:grade
-        // });
-        // console.log(req.session)
-            db.collection('analytics').find({ name: req.session.user } ).toArray()
-              .then(users => {
-                console.log(users)
+          db.collection('analytics').find({ name: req.session.user } ).toArray()
+            .then(users => {
+              console.log('result:',users, typeof(users[0]))
+              if ((typeof(users[0]) != "undefined")){
                 res.render("dashboard", {
                   user: users[0]['name'],
                   max: users[0]['max'],
                   min: users[0]['min'],
                   avg: users[0]['avg']
                 });
-              })
-              .catch(/* ... */);
+              }else {
+              res.render("dashboard", {
+                user: req.session.user,
+                max: 0,
+                min: 0,
+                avg: 0
+              });
+            }
+            })
+            .catch(/* ... */);
         } else {
           res.end(`<p>Please first log in at <a href='http://${host}:3000'>this link </a></p>`)
         }
-        
-        // res.write(`<p>Hi ${user}, </p><br>`)
-        // res.write(`<p>Subject: ${subject} </p>`)
-        // res.end(`<p>Grade:  ${grade}</p>`);
-        // res.end('<a href=' + '/logout' + '>Click here to log out</a >')
     });
     app.post('/user',(req, res) => {
-      // res.send("Hello world From Server 2");
       req.session.user = req.body.user,
       user = req.body.user,
       console.log(req.session)
@@ -110,7 +108,6 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
     });
 
     app.post('/logout',(req, res) => {
-      // res.send("Hello world From Server 2");
       req.session.user = req.body.user,
       user = req.body.user,
       req.session.destroy(err => {

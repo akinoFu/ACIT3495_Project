@@ -2,8 +2,6 @@ const express = require("express");
 const passport = require("../middleware/passport");
 const { forwardAuthenticated } = require("../middleware/checkAuth");
 const axios = require('axios');
-// const serverOne = 'http://localhost:3001/user';
-// const serverTwo = 'http://localhost:3002/user';
 const fs = require('fs');
 const yaml = require('js-yaml');
 try {
