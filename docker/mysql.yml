@@ -1,3 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mysql-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -36,8 +48,27 @@ spec:
           name: mysql
         volumeMounts:
         - name: prj-mysql-data
+          subPath: "mysql"
           mountPath: /var/lib/mysql
+        - name: mysql-initdb
+          mountPath: /docker-entrypoint-initdb.d
       volumes:
       - name: prj-mysql-data
         persistentVolumeClaim:
-          claimName: mysql-pv-claim
+          claimName: mysql-pvc
+      - name: mysql-initdb
+        configMap:
+          name: mysql-initdb-config
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql-initdb-config
+data:
+  initdb.sql: |
+    create database if not exists project;
+    use project;
+    create table if not exists grades (
+      name varchar(250) not null,
+      subject varchar(250) not null,
+      grade int not null);
