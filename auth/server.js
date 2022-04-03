@@ -35,8 +35,6 @@ const serverOne = 'http://localhost:3001/user';
 const serverTwo = 'http://localhost:3002/user';
 
 const passport = require("./middleware/passport");
-// const authRoute = require("./routes/authRoute");
-// const indexRoute = require("./routes/indexRoute");
 
 const authRoute = require("./routes/authRoute");
 const indexRoute = require("./routes/indexRoute");
@@ -62,65 +60,6 @@ app.use((req, res, next) => {
 
 app.use("/", indexRoute);
 app.use("/auth", authRoute);
-
-// app.get("/", (req, res) => {
-//     const sess = req.session;
-//     if (sess.username && sess.password) {
-//         if (sess.username) {
-//             res.render("dashboard", {
-//                 user: sess.username,
-//               });
-//         }
-//     } else {
-//         res.sendFile(__dirname + "/login.html")
-//     }
-// });
-
-// app.post("/login", (req, res) => {
-//     const sess = req.session;
-//     const { username, password } = req.body
-//     sess.username = username
-//     sess.password = password
-
-//     if (sess.username == sess.password) {
-//         axios
-//         .post(serverOne, {
-//           user: sess.username
-//         })
-//         .then((res) => {
-//           console.log(`App1 statusCode: ${res.statusCode}`)
-//         //   console.log(res)
-          
-//         })
-//         .catch((error) => {
-//           console.error(error)
-//         }),
-//         axios
-//         .post(serverTwo, {
-//           user: sess.username
-//         })
-//         .then((res) => {
-//           console.log(`App2 statusCode: ${res.statusCode}`)
-//         //   console.log(res)
-          
-//         })
-//         .catch((error) => {
-//           console.error(error)
-//         })
-//     }
-//     res.render("dashboard", {
-//         user: sess.username,
-//       });
-// });
-
-// app.get("/logout", (req, res) => {
-//     req.session.destroy(err => {
-//         if (err) {
-//             return console.log(err);
-//         }
-//         res.redirect("/")
-//     });
-// });
 
 app.listen(3000, () => {
     console.log(`🚀 Server running on http://${HOST}:${port}`);

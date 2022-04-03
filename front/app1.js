@@ -8,9 +8,7 @@ var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 const axios = require('axios');
-// const MongoClient = require('mongodb').MongoClient
 const mysql = require('mysql');
-// const url = "http://localhost:8003/add";
 
 app.use(session({
   secret: 'secret$%^134',
@@ -42,29 +40,21 @@ try {
   console.log(e);
 }
 const url = `http://${host}:3001/add`
+app.get('/',function(req,res) {
+  res.redirect('/app1')
+});
 app.get('/app1',function(req,res) {
     console.log(user)
     if (typeof user !== 'undefined' && user !=''){
       res.render("display", {
-      user: user,
+      user: user
     });
     console.log(req.session)
     } else {
       res.end(`<p>Please first log in at <a href='http://${host}:3000'>this link </a></p>`)
     }
     
-    // if (req.session.subject) {
-    //     console.log(req.session.subject, req.session.grade)
-    // }
 });
-
-
-// const connectionString = `mongodb://${mgb['user']}:${mgb['password']}@${mgb['hostname']}:${mgb['port']}/`;
-
-// MongoClient.connect(connectionString, {useUnifiedTopology: true})
-//   .then(client => {
-//     console.log('Connected to Mongo Database')
-//     const db = client.db('project')
 
 app.post("/app1", (req,res) =>{
   if (typeof user !== 'undefined' && user !='') {
@@ -99,7 +89,12 @@ app.post("/app1", (req,res) =>{
           console.log("1 record inserted");
         });
       })
-      res.redirect("/app1")
+      function sleep(ms) {
+        return new Promise((resolve) => {
+          setTimeout(resolve, ms);
+        });
+      }
+      sleep(5000).then (() =>res.redirect("/app1"))
   }else {
     res.end(`<p>Please first log in at <a href='http://${host}:3000'>this link </a></p>`)
   }
@@ -107,7 +102,6 @@ app.post("/app1", (req,res) =>{
 });
 
 app.post('/user',(req, res) => {
-  // res.send("Hello world From Server 2");
   req.session.user = req.body.user,
   user = req.body.user,
   console.log(req.session)
@@ -119,7 +113,6 @@ app.post('/user',(req, res) => {
 });
 
 app.post('/logout',(req, res) => {
-  // res.send("Hello world From Server 2");
   req.session.user = req.body.user,
   user = req.body.user,
   req.session.destroy(err => {
@@ -130,8 +123,6 @@ app.post('/logout',(req, res) => {
   });
   res.status(200).send('OK');
 });
-  // })
-
 
 app.listen(port, HOST);
 console.log(`🚀 Server running on http://${HOST}:${port}`);
