@@ -9,6 +9,7 @@ spec:
   resources:
     requests:
       storage: 1Gi
+
 ---
 apiVersion: v1
 kind: Service
@@ -20,6 +21,7 @@ spec:
   selector:
     app: mysql
   clusterIP: None
+
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -41,8 +43,11 @@ spec:
         name: mysql
         env:
           # Use secret in real usage
-        - name: MYSQL_ROOT_PASSWORD
-          value: group10
+          - name: MYSQL_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: mysqlsecret
+                key: group10
         ports:
         - containerPort: 3306
           name: mysql
