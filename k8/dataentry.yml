@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gradeapp-dataentry
+  labels:
+    app: gradeapp-dataentry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gradeapp-dataentry
+  template:
+    metadata:
+      labels:
+        app: gradeapp-dataentry
+    spec: 
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: gradeapp-dataentry
+        image: cherylk19/front
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3001
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataentry-lb
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 3001
+    targetPort: 3001
+  selector:
+    app: gradeapp-dataentry
+
