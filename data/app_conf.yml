@@ -2,13 +2,13 @@ version: 1
 mysql:
   user: root
   password: group10
-  hostname: host.docker.internal
+  hostname: localhost
   port: 33061
   db: project
 mongodb:
   user: root
   password: group10
-  hostname: host.docker.internal
+  hostname: localhost
   port: 27017
   db: project
   collection: analytics
