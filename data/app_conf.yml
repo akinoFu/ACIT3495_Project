@@ -1,0 +1,20 @@
+version: 1
+mysql:
+  user: root
+  password: group10
+  hostname: mysql
+  port: 33061
+  db: project
+mongodb:
+  user: root
+  password: group10
+  hostname: mongodb
+  port: 27017
+  db: project
+  collection: analytics
+scheduler:
+  period_sec: 5
+front:
+  host: front
+data:
+  host: data

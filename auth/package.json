@@ -1,0 +1,25 @@
+{
+  "name": "auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "express": "^4.17.3",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.2",
+    "js-yaml": "^4.1.0",
+    "mongodb": "^4.4.1",
+    "passport": "^0.5.2",
+    "passport-github": "^1.1.0",
+    "passport-local": "^1.0.0",
+    "ejs": "^3.1.6",
+    "mysql": "^2.18.1"
+  }
+}
