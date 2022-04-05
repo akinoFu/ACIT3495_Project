@@ -49,9 +49,6 @@ spec:
         - name: prj-mysql-data
           persistentVolumeClaim:
             claimName: prj-mysql-data
-        # - name: mysql-claim1
-        #   persistentVolumeClaim:
-        #     claimName: mysql-claim1
         - name: mysql-initdb
           configMap:
             name: mysql-initdb-config
