@@ -12,8 +12,8 @@ try {
 } catch (e) {
   console.log(e);
 }
-const serverOne = `http://localhost:3001/logout`;
-const serverTwo = `http://localhost:3002/logout`;
+const serverOne = `http://${front['host']}:3001/logout`;
+const serverTwo = `http://${data['host']}:3002/logout`;
 
 const router = express.Router();
 
