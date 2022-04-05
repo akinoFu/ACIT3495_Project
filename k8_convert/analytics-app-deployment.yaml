@@ -24,9 +24,6 @@ spec:
         io.kompose.service: analytics-app
     spec:
       containers:
-        - args:
-            - python3
-            - /analytics-app/app.py
           image: akinofu/analytics-app:latest
           name: analytics-app
           ports:
