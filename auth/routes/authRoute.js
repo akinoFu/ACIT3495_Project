@@ -6,8 +6,9 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 try {
   let fileContents = fs.readFileSync('./app_conf.yml', 'utf8');
-  const data = yaml.load(fileContents);
-
+  const conf = yaml.load(fileContents);
+  var front = conf['front'];
+  var data = conf['data'];
 
 } catch (e) {
   console.log(e);
