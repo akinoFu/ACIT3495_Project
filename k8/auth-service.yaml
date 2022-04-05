@@ -9,6 +9,7 @@ metadata:
     io.kompose.service: auth
   name: auth
 spec:
+  type: LoadBalancer
   ports:
     - name: "3000"
       port: 3000
