@@ -24,7 +24,7 @@ spec:
         io.kompose.service: analytics-app
     spec:
       containers:
-          image: akinofu/analytics-app:latest
+        - image: akinofu/analytics-app:latest
           name: analytics-app
           ports:
             - containerPort: 8080

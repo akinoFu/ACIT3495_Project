@@ -25,10 +25,9 @@ spec:
         io.kompose.service: mysql
     spec:
       containers:
-        - args:
-            - --init-file
-            - /data/application/mysql_init.sql
-          env:
+        - env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: group10
             - name: MYSQL_DATABASE
               value: project
             - name: MYSQL_PASSWORD
@@ -43,14 +42,17 @@ spec:
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: prj-mysql-data
-            - mountPath: /data/application/mysql_init.sql
-              name: mysql-claim1
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
       restartPolicy: Always
       volumes:
         - name: prj-mysql-data
           persistentVolumeClaim:
             claimName: prj-mysql-data
-        - name: mysql-claim1
-          persistentVolumeClaim:
-            claimName: mysql-claim1
+        # - name: mysql-claim1
+        #   persistentVolumeClaim:
+        #     claimName: mysql-claim1
+        - name: mysql-initdb
+          configMap:
+            name: mysql-initdb-config
 status: {}
