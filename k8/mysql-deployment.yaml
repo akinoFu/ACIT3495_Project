@@ -35,6 +35,8 @@ spec:
             - name: MYSQL_USER
               value: backend
           image: mysql:5.7
+          args:
+            - "--ignore-db-dir=lost+found"
           name: mysql
           ports:
             - containerPort: 3306
