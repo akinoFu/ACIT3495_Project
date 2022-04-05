@@ -1,6 +1,6 @@
 version: 1
 mysql:
-  user: root
+  user: backend
   password: group10
   hostname: mysql
   port: 33061
