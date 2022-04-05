@@ -9,17 +9,19 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 try {
   let fileContents = fs.readFileSync('./app_conf.yml', 'utf8');
-  const data = yaml.load(fileContents);
+  const conf = yaml.load(fileContents);
 
-  var mgb = data['mongodb'];
-  var host = data['host'];
-  var sql = data['mysql'];
+  var mgb = conf['mongodb'];
+  var host = conf['host'];
+  var sql = conf['mysql'];
+  var front = conf['front'];
+  var data = conf['data'];
 
 } catch (e) {
   console.log(e);
 }
-const serverOne = `http://${host}:3001/user`;
-const serverTwo = `http://${host}:3002/user`;
+const serverOne = `http://${front['host']}:3001/user`;
+const serverTwo = `http://${data['host']}:3002/user`;
 const { ensureAuthenticated, isAdmin } = require("../middleware/checkAuth");
 const connectionString = `mongodb://${mgb['user']}:${mgb['password']}@${mgb['hostname']}:${mgb['port']}/`;
 

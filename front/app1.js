@@ -34,12 +34,11 @@ try {
   const data = yaml.load(fileContents);
 
   var sql = data['mysql'];
-  var host = data['host']
 
 } catch (e) {
   console.log(e);
 }
-const url = `http://${host}:3001/add`
+const url = `http://localhost:3001/add`
 app.get('/',function(req,res) {
   res.redirect('/app1')
 });
@@ -51,7 +50,7 @@ app.get('/app1',function(req,res) {
     });
     console.log(req.session)
     } else {
-      res.end(`<p>Please first log in at <a href='http://${host}:3000'>this link </a></p>`)
+      res.end(`<p>Please first log in at <a href='http://localhost:3000'>this link </a></p>`)
     }
     
 });
@@ -96,7 +95,7 @@ app.post("/app1", (req,res) =>{
       }
       sleep(5000).then (() =>res.redirect("/app1"))
   }else {
-    res.end(`<p>Please first log in at <a href='http://${host}:3000'>this link </a></p>`)
+    res.end(`<p>Please first log in at <a href='http://localhost:3000'>this link </a></p>`)
   }
   
 });

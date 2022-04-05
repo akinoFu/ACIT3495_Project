@@ -35,8 +35,6 @@ const yaml = require('js-yaml');
 try {
   let fileContents = fs.readFileSync('./app_conf.yml', 'utf8');
   const data = yaml.load(fileContents);
-
-  var host = data['host']
   var mgb = data['mongodb'];
 
 } catch (e) {
@@ -93,7 +91,7 @@ MongoClient.connect(connectionString, {useUnifiedTopology: true})
             })
             .catch(/* ... */);
         } else {
-          res.end(`<p>Please first log in at <a href='http://${host}:3000'>this link </a></p>`)
+          res.end(`<p>Please first log in at <a href='http://localhost:3000'>this link </a></p>`)
         }
     });
     app.post('/user',(req, res) => {

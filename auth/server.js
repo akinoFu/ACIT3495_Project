@@ -31,8 +31,6 @@ const expressLayouts = require("express-ejs-layouts");
 const port = process.env.port || 3000;
 const HOST = '0.0.0.0';
 
-const serverOne = 'http://localhost:3001/user';
-const serverTwo = 'http://localhost:3002/user';
 
 const passport = require("./middleware/passport");
 

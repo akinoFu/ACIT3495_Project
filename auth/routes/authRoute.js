@@ -8,13 +8,12 @@ try {
   let fileContents = fs.readFileSync('./app_conf.yml', 'utf8');
   const data = yaml.load(fileContents);
 
-  var host = data['host']
 
 } catch (e) {
   console.log(e);
 }
-const serverOne = `http://${host}:3001/logout`;
-const serverTwo = `http://${host}:3002/logout`;
+const serverOne = `http://localhost:3001/logout`;
+const serverTwo = `http://localhost:3002/logout`;
 
 const router = express.Router();
 
