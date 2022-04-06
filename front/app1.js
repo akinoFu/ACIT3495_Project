@@ -31,14 +31,16 @@ const fs = require('fs');
 const yaml = require('js-yaml');
 try {
   let fileContents = fs.readFileSync('./app_conf.yml', 'utf8');
-  const data = yaml.load(fileContents);
-
-  var sql = data['mysql'];
+  const conf = yaml.load(fileContents);
+  var front = conf['front'];
+  var data = conf['data'];
+  var sql = conf['mysql'];
+  var data = conf['data']
 
 } catch (e) {
   console.log(e);
 }
-const url = `http://localhost:3001/add`
+const url = `http://${data['host']}:3002/add`
 app.get('/',function(req,res) {
   res.redirect('/app1')
 });

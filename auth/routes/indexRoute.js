@@ -29,6 +29,8 @@ const connectionString = `mongodb://${mgb['user']}:${mgb['password']}@${mgb['hos
 MongoClient.connect(connectionString, { useUnifiedTopology: true })
   .then(client => {
     console.log('Connected to Mongo Database')
+    console.log(serverOne)
+    console.log(serverTwo)
     const db = client.db('project')
     router.get("/", (req, res) => {
       res.render("login");
