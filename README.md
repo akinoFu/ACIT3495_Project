@@ -38,7 +38,7 @@ I. If you want to run it as a Docker application
 2. Go to the *docker* folder
 3. Run the following command:
 	```
-	docker-compose -d
+	docker-compose -d up
 	```
 II. If you want to run it on GKE
 1. Create a cluster on GKE
